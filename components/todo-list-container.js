@@ -12,7 +12,7 @@ class TodoListContainer extends HTMLElement {
 
   connectedCallback() {
     // <todo-list> 初回時のレンダー
-    this.addEventListener("todo-list-initial-render", this.onPaintTodoList);
+    this.addEventListener("todo-list-initial-render", this.onSetTodoList);
     // <todo-create-box> の入力があったときに発火
     this.addEventListener("set-new-todo", this.onSetNewTodo);
     // <todo-create-box> の add ボタン押下時に発火
@@ -31,14 +31,14 @@ class TodoListContainer extends HTMLElement {
     this.todoList = [...this.todoList, this.newTodo];
     this.newTodo = "";
 
-    this.onPaintTodoList();
+    this.onSetTodoList();
     this.onResetInputValue();
   }
 
   /** 子要素やそれらの属性の変更 */
 
   // for <todo-list>
-  onPaintTodoList() {
+  onSetTodoList() {
     const todoListElement = this.querySelector("todo-list");
     todoListElement.todoList = this.todoList;
   }
